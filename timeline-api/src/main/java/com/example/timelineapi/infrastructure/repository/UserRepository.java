@@ -1,4 +1,4 @@
-package com.example.timelineapi.domain.repository;
+package com.example.timelineapi.infrastructure.repository;
 
 import com.example.timelineapi.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
