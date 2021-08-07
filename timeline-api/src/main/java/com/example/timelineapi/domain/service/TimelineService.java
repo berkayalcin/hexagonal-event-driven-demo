@@ -30,6 +30,7 @@ public class TimelineService {
     }
 
     public TimelineActivityDTO seedTimeline(final TimelineActivityDTO timelineActivityDTO) {
+        // TODO : Make it idompotence
         final var timelineActivity = timelineActivityDTOToEntityConverter.apply(timelineActivityDTO);
         timelineRepository.save(timelineActivity);
         timelineActivityDTO.setId(timelineActivity.getId());
