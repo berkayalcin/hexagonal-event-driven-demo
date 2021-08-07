@@ -15,7 +15,7 @@ public class TimelineService {
     private final TimelineActivityRepository timelineRepository;
     private final TimelineActivityToDTOConverter timelineActivityToDTOConverter;
     private static final int PAGE_SIZE = 10;
-    private static Pageable TIMELINE_PAGINATION = Pageable.ofSize(PAGE_SIZE);
+    private static final Pageable TIMELINE_PAGINATION = Pageable.ofSize(PAGE_SIZE);
 
     public TimelineDTO getByOwner(final String timelineOwnerId, final int page) {
         final var pageable = TIMELINE_PAGINATION.withPage(page);
