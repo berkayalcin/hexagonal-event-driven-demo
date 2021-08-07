@@ -1,6 +1,8 @@
 package com.example.timelineapi.domain.service;
 
+import com.example.timelineapi.domain.converter.TimelineActivityDTOToEntityConverter;
 import com.example.timelineapi.domain.converter.TimelineActivityToDTOConverter;
+import com.example.timelineapi.domain.model.dto.TimelineActivityDTO;
 import com.example.timelineapi.domain.model.dto.TimelineDTO;
 import com.example.timelineapi.infrastructure.repository.TimelineActivityRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 public class TimelineService {
     private final TimelineActivityRepository timelineRepository;
     private final TimelineActivityToDTOConverter timelineActivityToDTOConverter;
+    private final TimelineActivityDTOToEntityConverter timelineActivityDTOToEntityConverter;
     private static final int PAGE_SIZE = 10;
     private static final Pageable TIMELINE_PAGINATION = Pageable.ofSize(PAGE_SIZE);
 
@@ -24,6 +27,13 @@ public class TimelineService {
         return TimelineDTO.builder()
                 .activities(timelineActivityDTOS)
                 .build();
+    }
+
+    public TimelineActivityDTO seedTimeline(final TimelineActivityDTO timelineActivityDTO) {
+        final var timelineActivity = timelineActivityDTOToEntityConverter.apply(timelineActivityDTO);
+        timelineRepository.save(timelineActivity);
+        timelineActivityDTO.setId(timelineActivity.getId());
+        return timelineActivityDTO;
     }
 
 }

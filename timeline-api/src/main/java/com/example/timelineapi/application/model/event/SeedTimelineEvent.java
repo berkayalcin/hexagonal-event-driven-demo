@@ -1,4 +1,4 @@
-package com.example.timelineapi.domain.event;
+package com.example.timelineapi.application.model.event;
 
 import lombok.*;
 
