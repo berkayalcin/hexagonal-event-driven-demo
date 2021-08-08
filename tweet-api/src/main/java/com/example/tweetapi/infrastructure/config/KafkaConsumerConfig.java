@@ -1,4 +1,4 @@
-package com.example.timelineapi.infrastructure.config;
+package com.example.tweetapi.infrastructure.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -43,7 +43,6 @@ public class KafkaConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<String, String> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
-        factory.setConcurrency(10);
         return factory;
     }
 }
