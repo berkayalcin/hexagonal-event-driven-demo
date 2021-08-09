@@ -24,6 +24,8 @@ public class SeedTimelineProducer {
 
     @Async(value = "singleThreadedPoolBean")
     public void seedTimelineOfFollowers(final TweetDTO tweet) {
+        // NOTES : Instead of publishing message here, we can create an event that commands to publish these messages, and send
+        // this event to Timeline-Seeder-Service.
         final var followers = followerService.findAllByFollowedUserId(tweet.getUserId());
         followers
                 .stream()
